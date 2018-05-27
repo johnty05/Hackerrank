@@ -1,0 +1,57 @@
+#include <bits/stdc++.h>
+
+#include <iostream>
+#include <vector>
+#include <string>
+using namespace std;
+
+string stackCleaner(string s)
+{
+    string s2;
+    for(int i = 0; i < s.size(); i++)
+    {
+        char a = s[i];
+        if(a == '(')
+        {
+            s2.push_back('(');
+        }
+        else if(s2.size())
+        {
+            if(s2.back() == '(')
+            {
+                s2.pop_back();
+            }
+            else s2.push_back(')');
+        }
+        else s2.push_back(')');
+    }
+    return s2;
+}
+
+// Complete the fewestOperationsToBalance function below.
+int fewestOperationsToBalance(string s) 
+{
+    string ss = stackCleaner(s);
+    int kl = 0;
+    if(!ss.size())
+    {
+        kl = 0;
+    }
+    else if(ss.back() != ss.front())
+    {
+        kl = 2;
+    }
+    else kl = 1;
+    cout<<kl;
+    return kl;
+}
+
+int main()
+{
+    int n;
+    cin >> n;
+    string s;
+    cin>>s;
+    int result = fewestOperationsToBalance(s);
+    return 0;
+}
